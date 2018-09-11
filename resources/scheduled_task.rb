@@ -46,11 +46,7 @@ action :add do
 
   # This block is here due to the changes in windows_task in 13.7
   # This can be removed once we no longer support < 13.7
-  full_command = if Gem::Requirement.new('< 13.7.0').satisfied_by?(Gem::Version.new(Chef::VERSION))
-                   "cmd /c \"#{client_cmd}\""
-                 else
-                   "cmd /c \'#{client_cmd}\'"
-                 end
+  full_command = "cmd /c \"#{client_cmd}\""
 
   windows_task new_resource.task_name do
     run_level :highest
